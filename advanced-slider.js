@@ -20,6 +20,10 @@ class advancedSlider extends HTMLElement {
         shadowRoot.appendChild(this.rangeElement);
         shadowRoot.appendChild(this.numberElement);
     }
+    static get observedAttributes() { return ["min", "max", "value"]; }
+    attributeChangedCallback(name, oldval, newval) {
+        this[name] = newval;
+    }
     connectedCallback() {
         var min = this.getAttribute("min");
         var max = this.getAttribute("max");
@@ -30,6 +34,25 @@ class advancedSlider extends HTMLElement {
         this.rangeElement.setAttribute("value", this.value);
 
         this.numberElement.setAttribute("value", this.value);
+    }
+    set min(newval) {
+        this.rangeElement.min = newval;
+    }
+    set max(newval) {
+        this.rangeElement.max = newval;
+    }
+    set value(newval) {
+        this.rangeElement.value = newval;
+        this.numberElement.value = newval;
+    }
+    get min() {
+        return this.rangeElement.min;
+    }
+    get max() {
+        return this.rangeElement.max;
+    }
+    get value() {
+        return this.rangeElement.value;
     }
 };
   
