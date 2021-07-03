@@ -14,6 +14,18 @@ class advancedSlider extends HTMLElement {
         this.numberElement.addEventListener("input", function() {
             this.value = this.numberElement.value;
         }.bind(this));
+        this.rangeElement.addEventListener("change", function() {
+            this.dispatchEvent(new Event("change", {
+                bubbles: true,
+                cancelable: true,
+            }));
+        }.bind(this));
+        this.numberElement.addEventListener("change", function() {
+            this.dispatchEvent(new Event("change", {
+                bubbles: true,
+                cancelable: true,
+            }));
+        }.bind(this));
 
         shadowRoot.appendChild(this.rangeElement);
         shadowRoot.appendChild(this.numberElement);
