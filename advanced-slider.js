@@ -36,13 +36,13 @@ class advancedSlider extends HTMLElement {
         this[name] = newval;
     }
     connectedCallback() {
-        var min = this.getAttribute("min");
-        var max = this.getAttribute("max");
+        this.min = this.getAttribute("min");
+        this.max = this.getAttribute("max");
         this.value = this.getAttribute("value");
         this.step = this.getAttribute("step");
 
-        this.rangeElement.setAttribute("min", min);
-        this.rangeElement.setAttribute("max", max);
+        this.rangeElement.setAttribute("min", this.min);
+        this.rangeElement.setAttribute("max", this.max);
         this.rangeElement.setAttribute("value", this.value);
         this.rangeElement.setAttribute("step", this.step);
 
