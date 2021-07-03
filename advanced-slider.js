@@ -70,7 +70,7 @@ class advancedSlider extends HTMLElement {
         return this.rangeElement.max;
     }
     get value() {
-        return this.rangeElement.value;
+        return this.numberElement.value;
     }
     get step() {
         return this.rangeElement.step;
