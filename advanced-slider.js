@@ -31,7 +31,7 @@ class advancedSlider extends HTMLElement {
         shadowRoot.appendChild(this.rangeElement);
         shadowRoot.appendChild(this.numberElement);
     }
-    static get observedAttributes() { return ["min", "max", "value"]; }
+    static get observedAttributes() { return ["min", "max", "value", "step"]; }
     attributeChangedCallback(name, oldval, newval) {
         this[name] = newval;
     }
@@ -39,12 +39,15 @@ class advancedSlider extends HTMLElement {
         var min = this.getAttribute("min");
         var max = this.getAttribute("max");
         this.value = this.getAttribute("value");
+        this.step = this.getAttribute("step");
 
         this.rangeElement.setAttribute("min", min);
         this.rangeElement.setAttribute("max", max);
         this.rangeElement.setAttribute("value", this.value);
+        this.rangeElement.setAttribute("step", this.step);
 
         this.numberElement.setAttribute("value", this.value);
+        this.numberElement.setAttribute("step", this.step);
     }
     set min(newval) {
         this.rangeElement.min = newval;
@@ -56,6 +59,10 @@ class advancedSlider extends HTMLElement {
         this.rangeElement.value = newval;
         this.numberElement.value = newval;
     }
+    set step(newval) {
+        this.rangeElement.step = newval;
+        this.numberElement.step = newval;
+    }
     get min() {
         return this.rangeElement.min;
     }
@@ -64,6 +71,9 @@ class advancedSlider extends HTMLElement {
     }
     get value() {
         return this.rangeElement.value;
+    }
+    get step() {
+        return this.rangeElement.step;
     }
 };
   
