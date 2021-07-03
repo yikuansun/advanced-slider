@@ -8,6 +8,7 @@ class advancedSlider extends HTMLElement {
         this.rangeElement.setAttribute("type", "range");
         this.numberElement = document.createElement("input");
         this.numberElement.setAttribute("type", "number");
+
         this.rangeElement.addEventListener("input", function() {
             this.value = this.rangeElement.value;
         }.bind(this));
