@@ -1,21 +1,26 @@
-class spotInput extends HTMLElement {
+class advancedSlider extends HTMLElement {
     constructor(...args) {
-      super(...args);
+        super(...args);
       
-      // Attaches a shadow root to your custom element.
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      
-      // Defines the "real" input element.
-      let inputElement = document.createElement('input');
-      inputElement.setAttribute('type', this.getAttribute('type'));
-      
-      inputElement.addEventListener('focus', () => {
-        console.log('focus on spot input');
-      });
-      
-      // Appends the input into the shadow root.
-      shadowRoot.appendChild(inputElement);
+        const shadowRoot = this.attachShadow({mode: "open"});
+
+        this.rangeElement = document.createElement("input");
+        this.rangeElement.setAttribute("type", "range");
+        this.rangeElement.addEventListener("input", function() {
+            this.value = this.rangeElement.value;
+        }.bind(this));
+
+        shadowRoot.appendChild(this.rangeElement);
     }
-  };
+    connectedCallback() {
+        var min = this.getAttribute("min");
+        var max = this.getAttribute("max");
+        this.value = this.getAttribute("value");
+
+        this.rangeElement.setAttribute("min", min);
+        this.rangeElement.setAttribute("max", max);
+        this.rangeElement.setAttribute("value", this.value);
+    }
+};
   
-  customElements.define('spot-input', spotInput);
+customElements.define('advanced-slider', advancedSlider);
